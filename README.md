@@ -21,5 +21,7 @@ grif.png;<br>
 lufa.png;<br>
 rave.png;<br>
 san.png;<br>
-
 HARRYP__.TTF;<br>
+
+### Node MCU 
+Node MCU ESP8266 was used in the project for to trigger the hat function<br>

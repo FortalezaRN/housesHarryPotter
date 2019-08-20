@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 #imagens and font with copyright
-/src/assets/img
 /src/assets/fonts
 
 #firebase config

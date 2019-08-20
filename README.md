@@ -17,11 +17,11 @@ You will also see any lint errors in the console.
 ### Images and Fonts
 images and fonts removed by copyright but just put 3 image files in src/assets/img folder with the names:<br>
 
-grif.png;<br>
-lufa.png;<br>
-rave.png;<br>
-san.png;<br>
-HARRYP__.TTF;<br>
+src/assets/img/grif.png;<br>
+src/assets/img/lufa.png;<br>
+src/assets/img/rave.png;<br>
+src/assets/img/san.png;<br>
+src/assets/fonts/HARRYP__.TTF;<br>
 
 ### Node MCU 
 Node MCU ESP8266 was used in the project for to trigger the hat function<br>

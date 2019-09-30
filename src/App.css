@@ -2,9 +2,18 @@
   font-family: harry;
   src: url(./assets/fonts/HARRYP__.TTF);
 }
+html {
+  height: 100%;
+}
  body{
-   margin: 0;
+  margin: 0;
+  letter-spacing: 4px;
+  font-family: "harry";
+  height: 100%;
  }
+#root, #root > div {
+  height: 100%;
+}
 .container--home{
   display: flex;
   width: 100%;
@@ -18,7 +27,7 @@
 .house--current > p{
   color: white;
   text-align: center;
-  transition: opacity 1.5s;
+  transition: all 1s;
   font-size: 50px;
   letter-spacing: 4px;
   font-family: "harry";
@@ -32,7 +41,7 @@
   display: none;
   justify-content: center;
   align-items: center;
-  transition: opacity 1.5s;
+  transition: all 1s;
   font-size: 79px;
   letter-spacing: 4px;
   font-family: "harry";
@@ -40,5 +49,50 @@
 
 #hat, #hat2{
   opacity: 1;
-  transition: opacity 1.5s;
+  transition: all 1s;
+}
+
+.scoresHouses {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+h3{
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 40px;
+  text-align: center;
+}
+.icon{
+  font-size: 30px;
+  padding: 0px 20px;
+}
+.less{
+  font-size: 40px;
+  font-weight: 800;
+}
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 40px;
+}
+.score {
+  border: 2px solid #FFF;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  min-width: 200px;
+}
+.content-score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  background-color: #000;
+  color: #FFF;
 }

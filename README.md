@@ -1,3 +1,5 @@
+sorry for bad english but we're go 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -14,14 +16,23 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### Images and Fonts
-images and fonts removed by copyright but just put 3 image files in src/assets/img folder with the names:<br>
-
-src/assets/img/grif.png;<br>
-src/assets/img/lufa.png;<br>
-src/assets/img/rave.png;<br>
-src/assets/img/san.png;<br>
+### Fonts
+Fonts removed by copyright:<br>
 src/assets/fonts/HARRYP__.TTF;<br>
 
 ### Node MCU 
 Node MCU ESP8266 was used in the project for to trigger the hat function<br>
+
+### For security, I left firebase data hidden
+But just create the project in firebase, copy the project data and create the file DataFirebase.js in src / assets / js / with firebase data:
+```const Config = () => ({
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+})
+
+export default Config;```

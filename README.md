@@ -25,7 +25,8 @@ Node MCU ESP8266 was used in the project for to trigger the hat function<br>
 
 ### For security, I left firebase data hidden
 But just create the project in firebase, copy the project data and create the file DataFirebase.js in src / assets / js / with firebase data:
-```const Config = () => ({
+```js
+const Config = () => ({
   apiKey: "",
   authDomain: "",
   databaseURL: "",
@@ -35,4 +36,5 @@ But just create the project in firebase, copy the project data and create the fi
   appId: ""
 })
 
-export default Config;```
+export default Config;
+```

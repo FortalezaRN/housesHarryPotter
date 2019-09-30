@@ -1,3 +1,4 @@
+#include <Ultrasonic.h>
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 
@@ -5,18 +6,20 @@
 #define FIREBASE_AUTH ""
 #define WIFI_SSID ""
 #define WIFI_PASSWORD ""
+#define TRIGGER_PIN  16
+#define ECHO_PIN     5
 
- int RED = 5;
+ int BLUE = 2;
 
- int GREEN = 4;
+ int GREEN = 0;
 
- int BLUE = 0;
+ int RED = 4;
+
+Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
 
 void setup()
 {
   Serial.begin(115200);
-  
-  pinMode(A0, INPUT);
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(BLUE, OUTPUT);
@@ -32,28 +35,29 @@ void setup()
   Serial.println();
   Serial.print("conectado: ");
   Serial.println(WiFi.localIP());
+  digitalWrite(LED_BUILTIN,LOW);
   
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
 }
 
 void showColorHouse(String color){
   
-    if (color == "/static/media/san.4f7890be.png"){
+    if (color == "Sonserina"){
       digitalWrite(RED,LOW);
       digitalWrite(GREEN,HIGH);
       digitalWrite(BLUE,LOW);
     }      
-    else if (color == "/static/media/grif.e5e07064.png"){
+    else if (color == "Grifinoria"){
       digitalWrite(RED,HIGH);
       digitalWrite(GREEN,LOW);
       digitalWrite(BLUE,LOW);
     }
-    else if (color == "/static/media/lufa.d27fb5de.png"){
+    else if (color == "Lufa-Lufa"){
       digitalWrite(RED,HIGH);
       digitalWrite(GREEN,HIGH);
       digitalWrite(BLUE,LOW);
     }      
-    else if (color == "/static/media/rave.9ebbbfe0.png"){      
+    else if (color == "Corvinal"){      
       digitalWrite(RED,LOW);
       digitalWrite(GREEN,LOW);
       digitalWrite(BLUE,HIGH);
@@ -61,30 +65,29 @@ void showColorHouse(String color){
 }
 
 void loop()
-{
-  // faz a leitura do pino A0 (no nosso caso, o potenciômetro, retorna um valor entre 0 e 1023)
+{ 
+  digitalWrite(LED_BUILTIN,HIGH);
   String path = "/";
   FirebaseObject seila = Firebase.get(path);
-  int potencia = analogRead(A0);
-  String currentHouse = seila.getString("stateCurrent/currentHouse");
+  int distancia = ultrasonic.distanceRead();
+  int distanciaDirebase = seila.getInt("arduinoDistancia");
+  String currentHouse = seila.getString("stateCurrent/currentHouse/name");
   
-  // Serial.println(potencia);
   if (Firebase.failed()) {
       Serial.print("setting /number failed:");
       Serial.println(Firebase.failed());
       Serial.println(Firebase.error());
-      delay(5000);
+      delay(1000);
       return;
   }
-  // como o LED no ESP8266 trabalha de maneira contrária, ou seja, quanto maior o valor atribuído, menor a intensidade. Faremos o cálculo para aumentarmos o brilho conforme girarmos o potenciômetro em sentido horário.
-  Serial.println(potencia);
-  if(potencia > 800){
+  
+  if(distancia < distanciaDirebase && distancia > 0){
     Firebase.setBool("arduino/choice", true);
     Serial.println("Arduino True");
-  } else {
-    Firebase.setBool("arduino/choice", false);
-    Serial.println("Arduino False");
   }
   showColorHouse(currentHouse);
-  delay(100);
+  Serial.print(ultrasonic.distanceRead());// distância medida em cm
+  Serial.println("cm"); // escreve texto na tela e pula uma linha
+      
+  delay(200);
 }
